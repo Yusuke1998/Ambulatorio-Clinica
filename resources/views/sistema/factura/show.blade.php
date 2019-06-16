@@ -4,9 +4,11 @@
 	<div class="col-md-12">
 		<p class="text-center h6 pull-right">SENIAT</p>
 	</div>
-	<div class="col-md-12">
-		<center><img src="{{ asset('img/logos/logo_clinica.png') }}"></center>
-	</div>
+	{{-- <div class="col-md-12">
+		<center>
+			<img height="100" src="{{ public_path('img\logos\\').$configuracion->logo }}">
+		</center>
+	</div> --}}
 	<div class="col-md-4">
 		<label class="form-control">Rif: {{ $configuracion->rif }}</label>
 	</div>
