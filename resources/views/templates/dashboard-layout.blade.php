@@ -18,12 +18,14 @@
     <header>
       <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container d-flex justify-content-between">
-            <a href="{{ URL('/') }}" style="background-color: #fff; padding: 0px 10px; border-radius: 5%;" title="">
+            <a href="{{ URL('/') }}" title="Inicio">
+              <p class="h5">{{ App\config::find(1)->name }}</p>
+              {{--
               @if(App\config::first()->logo)
               <img src="{{ asset('img/logos').'/'.App\config::find(1)->logo }}" height="50" alt="{{ (App\config::find(1)->name)?App\config::find(1)->name:'Clinica' }}">
               @else
-              <p class="h3">{{ App\config::find(1)->name }}</p>
-              @endif
+              @endif 
+              --}}
             </a>
         </div>
       </div>

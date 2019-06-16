@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\config;
 
 class LoginController extends Controller
 {
@@ -11,7 +12,8 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login2');
+        $configuracion = config::first();
+        return view('auth.login',compact('configuracion'));
     }
 
     public function redirectPath()
