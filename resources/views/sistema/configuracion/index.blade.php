@@ -5,7 +5,7 @@
 	<input type="hidden" name="_method" value="PUT">
 	<input type="hidden" name="user_id" value="{{ \Auth::User()->id }}">
 	<div class="row">
-		<p class="h3 text-center col-md-12">Datos de la clinica</p>
+		<p class="h3 text-center col-md-12">Datos del ambulatorio</p>
 
 
 
