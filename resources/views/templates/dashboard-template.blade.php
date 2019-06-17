@@ -19,20 +19,6 @@
             </ul>
             <hr>
         </li>
-        @endif
-        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
-          <h5>Pacientes</h5>
-          </a>       
-          <ul class="list-unstyled collapse" id="menu2">
-              <li><a href="{{ Route('pacientes.create') }}" title="Nuevo Paciente"><span class="glyphicon glyphicon-plus"></span> Nuevo</a></li>
-              <li><a href="{{ Route('pacientes.index') }}" title="Todos los Pacientes">Lista</a></li>
-              <li><a href="{{ Route('expedientes.index') }}" title="Lista de expedientes">Expedientes</a></li>
-              <li><a href="{{ Route('expedientes.create') }}" title="Crear expediente">Nuevo Expediente</a></li>
-              <li><a href="{{ Route('evoluciones.index') }}" title="Lista de evoluciones">Evoluciones</a></li>
-              <li><a href="{{ Route('evoluciones.create') }}" title="Crear evolucion">Nueva Evolucion</a></li>
-          </ul>
-          <hr>
-        </li>
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu3">
           <h5>Medicos</h5>
           </a>       
@@ -66,6 +52,20 @@
           </ul>
           <hr>
         </li>
+        @endif
+        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
+          <h5>Pacientes</h5>
+          </a>       
+          <ul class="list-unstyled collapse" id="menu2">
+              <li><a href="{{ Route('pacientes.create') }}" title="Nuevo Paciente"><span class="glyphicon glyphicon-plus"></span> Nuevo</a></li>
+              <li><a href="{{ Route('pacientes.index') }}" title="Todos los Pacientes">Lista</a></li>
+              <li><a href="{{ Route('expedientes.index') }}" title="Lista de expedientes">Expedientes</a></li>
+              <li><a href="{{ Route('expedientes.create') }}" title="Crear expediente">Nuevo Expediente</a></li>
+              <li><a href="{{ Route('evoluciones.index') }}" title="Lista de evoluciones">Evoluciones</a></li>
+              <li><a href="{{ Route('evoluciones.create') }}" title="Crear evolucion">Nueva Evolucion</a></li>
+          </ul>
+          <hr>
+        </li>
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu5">
           <h5>Citas</h5>
           </a>       
@@ -79,6 +79,8 @@
           </ul>
           <hr>
         </li>
+        
+        @if(Auth::user()->rol=="admin" || Auth::user()->rol=="receptionist")
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu8">
           <h5>Facturas</h5>
           </a>       
@@ -87,6 +89,7 @@
           </ul>
           <hr>
         </li>
+
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu6">
           <h5>Reportes</h5>
           </a>  
@@ -196,13 +199,17 @@
           </ul>
           <hr>
         </li>
+        @endif
+
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu7">
           <h5>Sistema</h5>
           </a>       
           <ul class="list-unstyled collapse" id="menu7">
+              @if(Auth::user()->rol=="admin")
               <li>
                 <a href="{{ Route('configuraciones.index') }}" title="Caracteristicas del sistema">Configuración</a>
               </li>
+              @endif
               <li>
                 <a style="width: 100px;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <span class="glyphicon glyphicon-off"></span> Cerrar sesion
