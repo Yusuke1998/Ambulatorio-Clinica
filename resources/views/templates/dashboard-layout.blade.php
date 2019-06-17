@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="JhonnyPrz">
     <link rel="icon" href="">
-    <title> @yield('title','CLINICA JJPM') </title>
+    <title> @yield('title','Nombre') </title>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('DataTables/datatables.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('fullcalendar/fullcalendar.css')}}"/>
@@ -20,13 +20,8 @@
         <div class="container d-flex justify-content-between">
             <a href="{{ URL('/') }}" title="Inicio">
               <p class="h5">{{ App\config::find(1)->name }}</p>
-              {{--
-              @if(App\config::first()->logo)
-              <img src="{{ asset('img/logos').'/'.App\config::find(1)->logo }}" height="50" alt="{{ (App\config::find(1)->name)?App\config::find(1)->name:'Clinica' }}">
-              @else
-              @endif 
-              --}}
             </a>
+            <p class="text-white">{{ Auth::user()->username }}</p>
         </div>
       </div>
     </header>
