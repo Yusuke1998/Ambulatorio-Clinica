@@ -10,7 +10,8 @@
 				<th>Paciente</th>
 				<th>Medico</th>
 				<th>Fecha</th>
-				<th>Hora</th>
+				<th>Desde</th>
+				<th>Hasta</th>
 				<th>Estatus</th>
 			</tr>
 		</thead>
@@ -20,7 +21,8 @@
 				<td>{{ $cita->patient->firstname }} {{ $cita->patient->lastname }}</td>
 				<td>{{ $cita->doctor->firstname }} {{ $cita->doctor->lastname }}</td>
 				<td>{{ date("d-m-Y", strtotime($cita->calendar->date)) }}</td>
-				<td>{{$cita->calendar->start_time_on}} {{($cita->calendar->start_time_on>12)?'pm':'am'}}</td>
+				<td>{{ date("g:i a", strtotime($cita->calendar->start_time_on)) }}</td>
+				<td>{{ date("g:i a", strtotime($cita->calendar->start_time_off)) }}</td>
 				<td>{{ $cita->status }}</td>
 			</tr>
 			@endforeach

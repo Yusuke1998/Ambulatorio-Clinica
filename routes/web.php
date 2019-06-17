@@ -51,11 +51,6 @@ Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 	Route::resource('/recepcionistas','receptionists');
 	Route::get('/recepcionistas/{recepcionista}/delete','receptionists@delete')->name('recepcionistas.delete');
 
-	// Facturas
-	Route::resource('/facturas','invoices');
-	Route::get('/facturas/{factura}/delete','invoices@delete')->name('facturas.delete');
-	Route::get('/factura/pdf/{id}','invoices@pdf')->name('factura.pdf');
-
 	// Calendario
 	Route::resource('/calendario','calendaries');
 

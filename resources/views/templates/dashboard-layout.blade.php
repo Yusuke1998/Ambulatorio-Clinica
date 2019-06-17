@@ -21,7 +21,9 @@
             <a href="{{ URL('/') }}" title="Inicio">
               <p class="h5">{{ App\config::find(1)->name }}</p>
             </a>
+            @if(Auth::check())
             <p class="text-white">{{ Auth::user()->username }}</p>
+            @endif
         </div>
       </div>
     </header>

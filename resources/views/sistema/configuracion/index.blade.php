@@ -14,19 +14,14 @@
 			<input type="text" name="name" placeholder="Nombre" class="form-control" value="{{ ($configuracion[0]->name)?$configuracion[0]->name:'' }}">
 		</div>
 
-		<div class="form-group col-md-6">
+		<div class="form-group col-md-3">
 			<label>Rif</label>
 			<input type="text" name="rif" placeholder="Rif" class="form-control" value="{{ ($configuracion[0]->rif)?$configuracion[0]->rif:'' }}">
 		</div>
 
-		<div class="form-group col-md-6">
+		<div class="form-group col-md-3">
 			<label>Telefono</label>
 			<input type="text" name="telephone" value="{{ ($configuracion[0]->telephone)?$configuracion[0]->telephone:'' }}" class="form-control" placeholder="Telefono">
-		</div>
-
-		<div class="form-group col-md-6">
-			<label>Iva (%)</label>
-			<input type="number" value="{{ ($configuracion[0]->iva)?$configuracion[0]->iva:'' }}" name="iva" class="form-control" placeholder="Iva">
 		</div>
 
 		<div class="form-group col-md-12">

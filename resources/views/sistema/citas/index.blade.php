@@ -5,7 +5,8 @@
 		<thead>
 			<tr>
 				<th>Fecha</th>
-				<th>Hora</th>
+				<th>Desde</th>
+				<th>Hasta</th>
 				<th>Paciente</th>
 				<th>Doctor</th>
 				<th>Estatus</th>
@@ -19,8 +20,10 @@
 						{{ date("d-m-Y", strtotime($cita->calendar->date)) }}
 					</td>
 					<td>
-						{{$cita->calendar->start_time_on}}
-						{{($cita->calendar->start_time_on>12)?'pm':'am'}}
+						{{ date("g:i a", strtotime($cita->calendar->start_time_on)) }}
+					</td>	
+					<td>
+						{{ date("g:i a", strtotime($cita->calendar->start_time_off)) }}
 					</td>					
 					<td>
 						{{$cita->patient->firstname}}&nbsp{{$cita->patient->lastname}}
@@ -37,13 +40,6 @@
 						<a title="Editar" href="{{route('citas.edit',$cita->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
 
 						<a title="Eliminar" href="{{route('citas.delete',$cita->id)}}" title=""><span class="glyphicon glyphicon-trash"></span></a>
-						
-						{{-- <form action="{{route('citas.destroy',$cita->id)}}" method="post">
-							@csrf
-							<input type="hidden" name="_method" value="DELETE">
-
-							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-danger btn-sm" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
-						</form> --}}
 					</td>
 				</tr>
 			@endforeach

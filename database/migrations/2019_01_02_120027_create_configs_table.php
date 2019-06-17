@@ -13,7 +13,6 @@ class CreateConfigsTable extends Migration
             $table->string('name')->nullable();
             $table->string('rif')->nullable();
             $table->string('telephone')->nullable();
-            $table->string('iva')->nullable();
             $table->string('address')->nullable();
             $table->string('logo')->default('logo.png')->nullable();
             $table->integer('user_id')->unsigned();

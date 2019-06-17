@@ -5,14 +5,9 @@
   <div class="row">
   	<input type="hidden" name="user_id" value="{{ Auth::User()->id }}">
 
-    <div class="col-md-6 form-group">
+    <div class="col-md-12 form-group">
       <label for="title">Razon</label>
       <input id="title" class="form-control" type="text" name="title">
-    </div>
-
-    <div class="col-md-6 form-group">
-      <label for="amountPaylable">Monto en Bs.S</label>
-      <input type="text" class="form-control" id="amountPaylable" name="amountPaylable" placeholder="Monto a pagar">
     </div>
 
     <div class="col-md-4 form-group">

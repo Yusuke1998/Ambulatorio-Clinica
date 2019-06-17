@@ -27,7 +27,6 @@ class users extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $user = new User;
         $user->username = $request->username;
         $user->email = $request->email;
@@ -49,7 +48,6 @@ class users extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request);
         $usuario = User::find($id);
         $usuario->username = $request->username;
         $usuario->email = $request->email;
@@ -63,7 +61,6 @@ class users extends Controller
     public function destroy($id)
     {
         $usuario = User::find($id);
-        // dd($usuario->doctor());
 
         if ($usuario->doctor) {
 
@@ -85,7 +82,6 @@ class users extends Controller
     public function delete($id)
     {
         $usuario = User::find($id);
-        // dd($usuario->doctor());
 
         if ($usuario->doctor) {
 

@@ -7,7 +7,6 @@ use App\appointment;
 use App\calendar;
 use App\doctor;
 use App\patient;
-use App\bill;
 use App\config;
 
 class quotes extends Controller
@@ -36,9 +35,7 @@ class quotes extends Controller
     {
         $cita = new appointment();
         $calendario = new calendar();
-        $factura = new bill();
         $configuracion = config::find(1);
-
 
         $cita->user_id = $request->user_id;
         $cita->patient_id = $request->patient_id;
@@ -46,19 +43,6 @@ class quotes extends Controller
         $cita->status = 'Pendiente';
         $cita->date = $request->start;
         $cita->save();
-
-        $iva = $configuracion->iva;
-        $subtotal = $request->amountPaylable;
-        $calculo = ($subtotal*$iva)/100;
-        $total = $subtotal+$calculo;
-
-        $factura->amountPaylable = $request->amountPaylable;
-        $factura->total = $total;
-        $factura->code = 'COD'.time();
-        $factura->date = $request->start;
-        $factura->appointment_id = $cita->id;
-        $factura->user_id = \Auth::User()->id;
-        $factura->save();
 
         $medico = doctor::find($request->doctor_id);
         $medico->patients()->attach($request->patient_id);
@@ -74,8 +58,7 @@ class quotes extends Controller
         $calendario->appointment_id = $cita->id;
         $calendario->save();
 
-
-        return redirect(Route('facturas.show',$factura->id))->with('info','Cita creada con exito!');
+        return redirect(route('citas.show',$cita->id))->with('info','Cita creada con exito!');
     }
 
     public function show($id)
@@ -99,16 +82,10 @@ class quotes extends Controller
     public function update(Request $request, $id)
     {
         $calendario  = calendar::where('appointment_id',$id);
-        $factura     = bill::where('appointment_id',$id);
         $configuracion = config::find(1);
 
         $start = $request->start.'T'.$request->start_time_on;
         $end = $request->start.'T'.$request->start_time_off;
-
-        $iva = $configuracion->iva;
-        $subtotal = $request->amountPaylable;
-        $calculo = ($subtotal*$iva)/100;
-        $total = $subtotal+$calculo;
         
         // Se asigna el color dependiendo del estatus de la cita
         switch ($request->status) {
@@ -150,15 +127,7 @@ class quotes extends Controller
             'status'        =>  $request->status, 
         ]);
 
-        $factura->update([
-            'amountPaylable'    => $request->amountPaylable,
-            'total'             => $total,
-        ]);
-
-        $factura     = bill::where('appointment_id',$id)->get();
-        $factura_id = $factura[0]->id;
-
-        return redirect(Route('citas.show',$factura_id))->with('info','Cita actualizada con exito!');
+        return back()->with('info','Cita actualizada con exito!');
     }
 
     public function destroy($id)

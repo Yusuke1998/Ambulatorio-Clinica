@@ -81,36 +81,11 @@
         </li>
         
         @if(Auth::user()->rol=="admin" || Auth::user()->rol=="receptionist")
-        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu8">
-          <h5>Facturas</h5>
-          </a>       
-          <ul class="list-unstyled collapse" id="menu8">
-              <li><a href="{{ Route('facturas.index') }}" title="Todas las facturas emitidas por el sistema">Todas las facturas</a></li>
-          </ul>
-          <hr>
-        </li>
 
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu6">
           <h5>Reportes</h5>
           </a>  
           <ul class="list-unstyled collapse" id="menu6">
-              <li>
-                <a href="{{ route('ingresos.pdf','todo') }}" title="PDF de ingresos">Ingresos</a>
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    <a href="{{ route('ingresos.pdf','dia') }}" title="">DIA</a>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="{{ route('ingresos.pdf','semana') }}" title="">SEMANA</a>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="{{ route('ingresos.pdf','mes') }}" title="">MES</a>
-                  </li>
-                  <li class="list-group-item">
-                    <a href="{{ route('ingresos.pdf','año') }}" title="">AÑO</a>
-                  </li>
-                </ul>
-              </li>
               <li>
                 <a href="{{ route('citas.pdf','todo') }}" title="PDF de citas">Citas</a>
                 <ul class="list-group">

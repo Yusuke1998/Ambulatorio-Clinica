@@ -35,7 +35,6 @@ class ConfigController extends Controller
         $configuracion->telephone = $request->telephone;
         $configuracion->address = $request->address;
         $configuracion->rif = $request->rif;
-        $configuracion->iva = $request->iva;
         $configuracion->logo = $nameImage;
         $configuracion->user_id = $request->user_id;
         $configuracion->save();

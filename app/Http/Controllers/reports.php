@@ -11,7 +11,6 @@ use App\receptionist;
 use App\casefile;
 use App\appointment;
 use App\evolution;
-use App\bill;
 use App\calendar;
 use App\config;
 
@@ -203,49 +202,6 @@ class reports extends Controller
                 break;
         }
         $pdf = PDF::loadView('sistema.pdf.citas', compact('citas','title','configuracion'));
-        return $pdf->stream('reporte_'.$title[1].'_'.$title[2].'.pdf');
-    }
-
-    public function ingresos($tipo){
-        $configuracion = config::first();
-        switch ($tipo) {
-            case 'todo':
-            $title = ['Reporte de todos los ingresos en el sistema','sistema','ingresos'];
-            $ingresos = bill::all();
-            // $ingresos = calendar::all();
-                break;
-            case 'dia':
-            $title = ['Reporte de todos los ingresos del dia','sistema','dia'];
-            $fecha = Carbon::now()->format('Y-m-d');
-            // $ingresos = calendar::wherecreated_at('date', '=', $fecha)->get();
-            $ingresos =  bill::wherecreated_at('date', '=', $fecha)->get();
-                break;
-            case 'semana':
-            $title = ['Reporte de todos los ingresos de la semana','sistema','semana'];
-            $InicioSemana = Carbon::now()->startOfWeek();
-            $FinSemana = Carbon::now()->endOfWeek();
-            // $ingresos = calendar::whereBetween('date', [$InicioSemana,$FinSemana])->get();
-            $ingresos = bill::whereBetween('date', [$InicioSemana,$FinSemana])->get();
-                break;
-            case 'mes':
-            $title = ['Reporte de todos los ingresos del mes','sistema','mes'];
-            $fecha = Carbon::now()->format('m');
-            $ingresos = bill::whereMonth('date','=',$fecha)->get();
-            // $ingresos = calendar::whereMonth('date', '=',$fecha)->get();
-                break;
-            case 'año':
-            $title = ['Reporte de todos los ingresos del año','sistema','año'];
-            $fecha = Carbon::now()->format('Y');
-            $ingresos = bill::whereYear('date','=',$fecha)->get();
-            // $ingresos = calendar::whereYear('date', '=',$fecha)->get();
-                break;
-            default:
-            $title = ['Reporte de todos los ingresos en el sistema','sistema','ingresos'];
-            $ingresos = bill::all();
-            // $ingresos = calendar::all();
-                break;
-        }
-        $pdf = PDF::loadView('sistema.pdf.ingresos', compact('ingresos','title','configuracion'));
         return $pdf->stream('reporte_'.$title[1].'_'.$title[2].'.pdf');
     }
 
